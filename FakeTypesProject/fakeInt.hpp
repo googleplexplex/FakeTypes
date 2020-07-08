@@ -1,17 +1,17 @@
 #pragma once
 #include "registerCore.hpp"
 
-class _int : public registeredInVariblesClass
+class _int : public registerableClass
 {
 public:
     int val;
     _int(int _val)
-        : registeredInVariblesClass(intType)
+        : registerableClass(intType)
     {
         val = _val;
     }
     _int()
-        : registeredInVariblesClass(intType) {}
+        : registerableClass(intType) {}
 
     _int operator=(int right)
     {

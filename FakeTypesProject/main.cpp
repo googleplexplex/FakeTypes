@@ -1,33 +1,37 @@
 #include <iostream>
 using namespace std;
 
+#define REGISTER_ALL
 #include "registerCore.hpp"
 
 #include "fakeInt.hpp"
 #include "fakeChar.hpp"
 
-
-_int _main();
-int main()
-{
-    return _main().val;
-}
-#define main _main
+//---
+#include "mainFunctionFix.hpp"
 
 #define int _int
 #define char _char
+//---
 
+class A registered
+{
+};
 
 int main()
 {
     int i = 0;
     cout << __doc__;
 
-    const char* str = (char*)("str");
-    i++;
-    cout << __doc__;
+    {
+        char str = 'A';
+        i++;
+        cout << __doc__;
 
-    delete str;
+        A aobj;
+        cout << __doc__;
+    }
+
     cout << __doc__;
 
     return 0;

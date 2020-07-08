@@ -142,9 +142,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dynamicArray.hpp" />
     <ClInclude Include="fakeChar.hpp" />
     <ClInclude Include="fakeInt.hpp" />
+    <ClInclude Include="mainFunctionFix.hpp" />
     <ClInclude Include="registerCore.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

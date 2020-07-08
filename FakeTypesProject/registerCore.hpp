@@ -1,19 +1,34 @@
 #pragma once
 #include <iostream>
-#include "dynamicArray.hpp"
+#include <vector>
 using namespace std;
+
+#ifndef REGISTER_ONLY_EXISTS
+    #ifndef REGISTER_ALL
+        #define REGISTER_ONLY_EXISTS
+    #endif
+#endif
+
+#ifdef REGISTER_ONLY_EXISTS
+    #ifdef REGISTER_ALL
+        #define REGISTER_ONLY_EXISTS
+    #endif
+#endif
 
 typedef enum typesEnum
 {
     intType = 0,
-    charType
+    charType,
+    classType
 };
-
 class varInfoClass
 {
 public:
     void* ptr;
     typesEnum type;
+#ifdef REGISTER_ALL
+    bool status;
+#endif
 
     friend ostream& operator<<(ostream& out, const varInfoClass& infoClass);
 };
@@ -21,47 +36,111 @@ ostream& operator<<(ostream& out, const varInfoClass& infoClass)
 {
     out << "Type: ";
     if (infoClass.type == intType)
-        out << typeid(int).name() << ", ";
+        out << typeid(int).name();
     else if (infoClass.type == charType)
-        out << typeid(char).name() << ", ";
+        out << typeid(char).name();
+    else if (infoClass.type == classType)
+        out << "class";
+    else
+        out << "?";
+
+    out << ", ";
 
     out << "Content: ";
     if (infoClass.type == intType)
         out << *((int*)infoClass.ptr);
     else if (infoClass.type == charType)
         out << *((char*)infoClass.ptr);
+    else
+        out << "?";
+
+#ifdef REGISTER_ALL
+    out << ", ";
+
+    out << "Status: ";
+    if (infoClass.status)
+        out << "Used";
+    else
+        out << "Deleted";
+#endif
 
     return out;
 }
-dynamicArray<varInfoClass> allVaribles;
+vector<varInfoClass> allVaribles;
+#define __doc__ allVaribles
 
-class registeredInVariblesClass
+class registerableClass
 {
 public:
-    registeredInVariblesClass(typesEnum varType)
+    registerableClass(typesEnum varType)
     {
         varInfoClass addedInfo;
         addedInfo.ptr = this;
         addedInfo.type = varType;
+#ifdef REGISTER_ALL
+        addedInfo.status = true;
+#endif
 
-        allVaribles.add(addedInfo);
+        allVaribles.push_back(addedInfo);
     }
-    ~registeredInVariblesClass()
+    ~registerableClass()
     {
+#ifdef REGISTER_ONLY_EXISTS
         varInfoClass deletedInfo;
         deletedInfo.ptr = this;
 
-        for (int i = 0; i < allVaribles.count; i++)
+        for (int i = 0; i < allVaribles.size(); i++)
         {
             if (allVaribles[i].ptr == this)
             {
-                allVaribles.delElementIn(i);
+                allVaribles.erase(allVaribles.begin() + i);
                 break;
             }
         }
+#endif
+#ifdef REGISTER_ALL
+        varInfoClass deletedInfo;
+        deletedInfo.ptr = this;
+
+        for (int i = 0; i < allVaribles.size(); i++)
+        {
+            if (allVaribles[i].ptr == this)
+            {
+                allVaribles[i].status = false;
+                break;
+            }
+        }
+#endif
     }
 };
 
-#define __doc__ allVaribles
+class registerableClassParent : registerableClass
+{
+public:
+    registerableClassParent()
+        : registerableClass(classType)
+    {}
+};
+#define registered : registerableClassParent
 
 
+string vectorCoutSeparator = ",\n";
+string vectorCoutEnd = "\n";
+template <typename T>
+std::ostream& operator<<(std::ostream& out, std::vector<T>& const showedVector) noexcept
+{
+    out << "[";
+
+    int showedVectorSize = showedVector.size();
+    for (int i = 0; i < showedVectorSize; i++)
+    {
+        out << showedVector[i];
+
+        if (i != showedVectorSize - 1)
+            out << vectorCoutSeparator;
+    }
+
+    out << "]" << vectorCoutEnd << endl;
+
+    return out;
+}
