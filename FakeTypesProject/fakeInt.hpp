@@ -1,171 +1,171 @@
 #pragma once
 #include "registerCore.hpp"
 
-class _int : public registerableClass
+class fakeInt : public registerableClass
 {
 public:
     int val;
-    _int(int _val)
+    fakeInt(int _val)
         : registerableClass(intType)
     {
         val = _val;
     }
-    _int()
+    fakeInt()
         : registerableClass(intType) {}
 
     template <typename T>
-    _int operator=(T right)
+    fakeInt operator=(T right)
     {
         return (val = right);
     }
-    _int operator=(_int right)
+    fakeInt operator=(fakeInt right)
     {
         return (val = right.val);
     }
     template <typename T>
-    _int operator+(T right)
+    fakeInt operator+(T right)
     {
         return (val + right);
     }
-    _int operator+(_int right)
+    fakeInt operator+(fakeInt right)
     {
         return (val + right.val);
     }
     template <typename T>
-    _int operator-(T right)
+    fakeInt operator-(T right)
     {
         return (val - right);
     }
-    _int operator-(_int right)
+    fakeInt operator-(fakeInt right)
     {
         return (val - right.val);
     }
     template <typename T>
-    _int operator*(T right)
+    fakeInt operator*(T right)
     {
         return (val * right);
     }
-    _int operator*(_int right)
+    fakeInt operator*(fakeInt right)
     {
         return (val * right.val);
     }
     template <typename T>
-    _int operator/(T right)
+    fakeInt operator/(T right)
     {
         return (val / right);
     }
-    _int operator/(_int right)
+    fakeInt operator/(fakeInt right)
     {
         return (val / right.val);
     }
 
     template <typename T>
-    _int operator+=(T right)
+    fakeInt operator+=(T right)
     {
         return (val += right);
     }
-    _int operator+=(_int right)
+    fakeInt operator+=(fakeInt right)
     {
         return (val += right.val);
     }
     template <typename T>
-    _int operator-=(T right)
+    fakeInt operator-=(T right)
     {
         return (val -= right);
     }
-    _int operator-=(_int right)
+    fakeInt operator-=(fakeInt right)
     {
         return (val -= right.val);
     }
     template <typename T>
-    _int operator*=(T right)
+    fakeInt operator*=(T right)
     {
         return (val *= right);
     }
-    _int operator*=(_int right)
+    fakeInt operator*=(fakeInt right)
     {
         return (val *= right.val);
     }
     template <typename T>
-    _int operator/=(T right)
+    fakeInt operator/=(T right)
     {
         return (val /= right);
     }
-    _int operator/=(_int right)
+    fakeInt operator/=(fakeInt right)
     {
         return (val /= right.val);
     }
 
-    _int operator++(int right)
+    fakeInt operator++(int right)
     {
         return val++;
     }
-    _int operator--(int right)
+    fakeInt operator--(int right)
     {
         return val--;
     }
-    _int operator++()
+    fakeInt operator++()
     {
         return ++val;
     }
-    _int operator--()
+    fakeInt operator--()
     {
         return --val;
     }
 
     template <typename T>
-    _int operator==(T right)
+    fakeInt operator==(T right)
     {
         return val == right;
     }
-    _int operator==(_int right)
+    fakeInt operator==(fakeInt right)
     {
         return val == right.val;
     }
     template <typename T>
-    _int operator!=(T right)
+    fakeInt operator!=(T right)
     {
         return !(val == right);
     }
-    _int operator!=(_int right)
+    fakeInt operator!=(fakeInt right)
     {
         return !(val == right.val);
     }
 
     template <typename T>
-    _int operator>(T right)
+    fakeInt operator>(T right)
     {
         return val > right;
     }
-    _int operator>(_int right)
+    fakeInt operator>(fakeInt right)
     {
         return val > right.val;
     }
     template <typename T>
-    _int operator<(T right)
+    fakeInt operator<(T right)
     {
         return val < right;
     }
-    _int operator<(_int right)
+    fakeInt operator<(fakeInt right)
     {
         return val < right.val;
     }
 
     template <typename T>
-    _int operator>=(T right)
+    fakeInt operator>=(T right)
     {
         return val >= right;
     }
-    _int operator>=(_int right)
+    fakeInt operator>=(fakeInt right)
     {
         return val >= right.val;
     }
     template <typename T>
-    _int operator<=(T right)
+    fakeInt operator<=(T right)
     {
         return val <= right;
     }
-    _int operator<=(_int right)
+    fakeInt operator<=(fakeInt right)
     {
         return val <= right.val;
     }

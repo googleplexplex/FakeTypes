@@ -142,8 +142,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fakeBool.hpp" />
     <ClInclude Include="fakeChar.hpp" />
+    <ClInclude Include="fakeDouble.hpp" />
+    <ClInclude Include="fakeFloat.hpp" />
     <ClInclude Include="fakeInt.hpp" />
+    <ClInclude Include="include.hpp" />
     <ClInclude Include="mainFunctionFix.hpp" />
     <ClInclude Include="registerCore.hpp" />
   </ItemGroup>

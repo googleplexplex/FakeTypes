@@ -1,7 +1,7 @@
 #pragma once
 #include "fakeInt.hpp"
 
-_int _main();
+fakeInt _main();
 int main()
 {
     return _main().val;

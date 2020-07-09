@@ -19,8 +19,13 @@ typedef enum typesEnum
 {
     intType = 0,
     charType,
+    floatType,
+    doubleType,
+    boolType,
     classType
 };
+
+
 class varInfoClass
 {
 public:
@@ -36,9 +41,15 @@ ostream& operator<<(ostream& out, const varInfoClass& infoClass)
 {
     out << "Type: ";
     if (infoClass.type == intType)
-        out << typeid(int).name();
+        out << "int";
     else if (infoClass.type == charType)
-        out << typeid(char).name();
+        out << "char";
+    else if (infoClass.type == floatType)
+        out << "float";
+    else if (infoClass.type == doubleType)
+        out << "double";
+    else if (infoClass.type == boolType)
+        out << "bool";
     else if (infoClass.type == classType)
         out << "class";
     else
@@ -51,6 +62,12 @@ ostream& operator<<(ostream& out, const varInfoClass& infoClass)
         out << *((int*)infoClass.ptr);
     else if (infoClass.type == charType)
         out << *((char*)infoClass.ptr);
+    else if (infoClass.type == floatType)
+        out << *((float*)infoClass.ptr);
+    else if (infoClass.type == doubleType)
+        out << *((double*)infoClass.ptr);
+    else if (infoClass.type == boolType)
+        out << *((bool*)infoClass.ptr);
     else
         out << "?";
 

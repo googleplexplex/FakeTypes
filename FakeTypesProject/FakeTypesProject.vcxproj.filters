@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\fakeTypes">
+      <UniqueIdentifier>{ec91ffcf-be0b-4355-a0dc-f815d5e7f4d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -20,16 +23,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fakeChar.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="fakeInt.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="registerCore.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="mainFunctionFix.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeBool.hpp">
+      <Filter>Файлы заголовков\fakeTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeChar.hpp">
+      <Filter>Файлы заголовков\fakeTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeDouble.hpp">
+      <Filter>Файлы заголовков\fakeTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeFloat.hpp">
+      <Filter>Файлы заголовков\fakeTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeInt.hpp">
+      <Filter>Файлы заголовков\fakeTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

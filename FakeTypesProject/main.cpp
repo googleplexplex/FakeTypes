@@ -1,34 +1,26 @@
 #include <iostream>
+#define REGISTER_ALL
+#include "include.hpp"
 using namespace std;
 
-#define REGISTER_ALL
-#include "registerCore.hpp"
-
-#include "fakeInt.hpp"
-#include "fakeChar.hpp"
-
-//---
-#include "mainFunctionFix.hpp"
-
-#define int _int
-#define char _char
-//---
 
 class A registered
 {
 };
 
+
 int main()
 {
-    int i = 0;
+    int intVar = 0;
+    bool boolVar = true;
     cout << "1) " << __doc__;
 
     {
         char str = 'A';
-        i++;
+        intVar++;
         cout << "2) " << __doc__;
 
-        A aobj;
+        A aVar;
         cout << "3) " << __doc__;
     }
 

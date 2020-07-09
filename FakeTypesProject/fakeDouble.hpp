@@ -1,173 +1,171 @@
 #pragma once
 #include "registerCore.hpp"
 
-class fakeChar : public registerableClass
+class fakeDouble : public registerableClass
 {
 public:
-    char val;
-    fakeChar(char _val)
-        : registerableClass(charType)
+    double val;
+    fakeDouble(int _val)
+        : registerableClass(intType)
     {
         val = _val;
     }
-    fakeChar()
-        : registerableClass(charType) {}
+    fakeDouble()
+        : registerableClass(intType) {}
 
     template <typename T>
-    fakeChar operator=(T right)
+    fakeDouble operator=(T right)
     {
-        val = right;
-        return (*this);
+        return (val = right);
     }
-    fakeChar operator=(fakeChar right)
+    fakeDouble operator=(fakeDouble right)
     {
-        val = right.val;
-        return (*this);
+        return (val = right.val);
     }
     template <typename T>
-    fakeChar operator+(T right)
+    fakeDouble operator+(T right)
     {
         return (val + right);
     }
-    fakeChar operator+(fakeChar right)
+    fakeDouble operator+(fakeDouble right)
     {
         return (val + right.val);
     }
     template <typename T>
-    fakeChar operator-(T right)
+    fakeDouble operator-(T right)
     {
         return (val - right);
     }
-    fakeChar operator-(fakeChar right)
+    fakeDouble operator-(fakeDouble right)
     {
         return (val - right.val);
     }
     template <typename T>
-    fakeChar operator*(T right)
+    fakeDouble operator*(T right)
     {
         return (val * right);
     }
-    fakeChar operator*(fakeChar right)
+    fakeDouble operator*(fakeDouble right)
     {
         return (val * right.val);
     }
     template <typename T>
-    fakeChar operator/(T right)
+    fakeDouble operator/(T right)
     {
         return (val / right);
     }
-    fakeChar operator/(fakeChar right)
+    fakeDouble operator/(fakeDouble right)
     {
         return (val / right.val);
     }
 
     template <typename T>
-    fakeChar operator+=(T right)
+    fakeDouble operator+=(T right)
     {
         return (val += right);
     }
-    fakeChar operator+=(fakeChar right)
+    fakeDouble operator+=(fakeDouble right)
     {
         return (val += right.val);
     }
     template <typename T>
-    fakeChar operator-=(T right)
+    fakeDouble operator-=(T right)
     {
         return (val -= right);
     }
-    fakeChar operator-=(fakeChar right)
+    fakeDouble operator-=(fakeDouble right)
     {
         return (val -= right.val);
     }
     template <typename T>
-    fakeChar operator*=(T right)
+    fakeDouble operator*=(T right)
     {
         return (val *= right);
     }
-    fakeChar operator*=(fakeChar right)
+    fakeDouble operator*=(fakeDouble right)
     {
         return (val *= right.val);
     }
     template <typename T>
-    fakeChar operator/=(T right)
+    fakeDouble operator/=(T right)
     {
         return (val /= right);
     }
-    fakeChar operator/=(fakeChar right)
+    fakeDouble operator/=(fakeDouble right)
     {
-        return (val -= right.val);
+        return (val /= right.val);
     }
 
-    fakeChar operator++(int right)
+    fakeDouble operator++(int right)
     {
         return val++;
     }
-    fakeChar operator--(int right)
+    fakeDouble operator--(int right)
     {
         return val--;
     }
-    fakeChar operator++()
+    fakeDouble operator++()
     {
         return ++val;
     }
-    fakeChar operator--()
+    fakeDouble operator--()
     {
         return --val;
     }
 
     template <typename T>
-    fakeChar operator==(T right)
+    fakeDouble operator==(T right)
     {
         return val == right;
     }
-    fakeChar operator==(fakeChar right)
+    fakeDouble operator==(fakeDouble right)
     {
         return val == right.val;
     }
     template <typename T>
-    fakeChar operator!=(T right)
+    fakeDouble operator!=(T right)
     {
         return !(val == right);
     }
-    fakeChar operator!=(fakeChar right)
+    fakeDouble operator!=(fakeDouble right)
     {
         return !(val == right.val);
     }
 
     template <typename T>
-    fakeChar operator>(T right)
+    fakeDouble operator>(T right)
     {
         return val > right;
     }
-    fakeChar operator>(fakeChar right)
+    fakeDouble operator>(fakeDouble right)
     {
         return val > right.val;
     }
     template <typename T>
-    fakeChar operator<(T right)
+    fakeDouble operator<(T right)
     {
         return val < right;
     }
-    fakeChar operator<(fakeChar right)
+    fakeDouble operator<(fakeDouble right)
     {
         return val < right.val;
     }
 
     template <typename T>
-    fakeChar operator>=(T right)
+    fakeDouble operator>=(T right)
     {
         return val >= right;
     }
-    fakeChar operator>=(fakeChar right)
+    fakeDouble operator>=(fakeDouble right)
     {
         return val >= right.val;
     }
     template <typename T>
-    fakeChar operator<=(T right)
+    fakeDouble operator<=(T right)
     {
         return val <= right;
     }
-    fakeChar operator<=(fakeChar right)
+    fakeDouble operator<=(fakeDouble right)
     {
         return val <= right.val;
     }
