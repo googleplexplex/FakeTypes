@@ -13,7 +13,8 @@ public:
     _char()
         : registerableClass(charType) {}
 
-    _char operator=(char right)
+    template <typename T>
+    _char operator=(T right)
     {
         val = right;
         return (*this);
@@ -23,7 +24,8 @@ public:
         val = right.val;
         return (*this);
     }
-    _char operator+(char right)
+    template <typename T>
+    _char operator+(T right)
     {
         return (val + right);
     }
@@ -31,7 +33,8 @@ public:
     {
         return (val + right.val);
     }
-    _char operator-(char right)
+    template <typename T>
+    _char operator-(T right)
     {
         return (val - right);
     }
@@ -39,26 +42,60 @@ public:
     {
         return (val - right.val);
     }
-
-    _char operator+=(char right)
+    template <typename T>
+    _char operator*(T right)
     {
-        val += right;
-        return (*this);
+        return (val * right);
+    }
+    _char operator*(_char right)
+    {
+        return (val * right.val);
+    }
+    template <typename T>
+    _char operator/(T right)
+    {
+        return (val / right);
+    }
+    _char operator/(_char right)
+    {
+        return (val / right.val);
+    }
+
+    template <typename T>
+    _char operator+=(T right)
+    {
+        return (val += right);
     }
     _char operator+=(_char right)
     {
-        val += right.val;
-        return (*this);
+        return (val += right.val);
     }
-    _char operator-=(char right)
+    template <typename T>
+    _char operator-=(T right)
     {
-        val -= right;
-        return (*this);
+        return (val -= right);
     }
     _char operator-=(_char right)
     {
-        val -= right.val;
-        return (*this);
+        return (val -= right.val);
+    }
+    template <typename T>
+    _char operator*=(T right)
+    {
+        return (val *= right);
+    }
+    _char operator*=(_char right)
+    {
+        return (val *= right.val);
+    }
+    template <typename T>
+    _char operator/=(T right)
+    {
+        return (val /= right);
+    }
+    _char operator/=(_char right)
+    {
+        return (val -= right.val);
     }
 
     _char operator++(int right)
@@ -78,7 +115,8 @@ public:
         return --val;
     }
 
-    _char operator==(char right)
+    template <typename T>
+    _char operator==(T right)
     {
         return val == right;
     }
@@ -86,7 +124,8 @@ public:
     {
         return val == right.val;
     }
-    _char operator!=(char right)
+    template <typename T>
+    _char operator!=(T right)
     {
         return !(val == right);
     }
@@ -95,7 +134,8 @@ public:
         return !(val == right.val);
     }
 
-    _char operator>(char right)
+    template <typename T>
+    _char operator>(T right)
     {
         return val > right;
     }
@@ -103,7 +143,8 @@ public:
     {
         return val > right.val;
     }
-    _char operator<(char right)
+    template <typename T>
+    _char operator<(T right)
     {
         return val < right;
     }
@@ -112,7 +153,8 @@ public:
         return val < right.val;
     }
 
-    _char operator>=(char right)
+    template <typename T>
+    _char operator>=(T right)
     {
         return val >= right;
     }
@@ -120,7 +162,8 @@ public:
     {
         return val >= right.val;
     }
-    _char operator<=(char right)
+    template <typename T>
+    _char operator<=(T right)
     {
         return val <= right;
     }

@@ -13,17 +13,17 @@ public:
     _int()
         : registerableClass(intType) {}
 
-    _int operator=(int right)
+    template <typename T>
+    _int operator=(T right)
     {
-        val = right;
-        return (*this);
+        return (val = right);
     }
     _int operator=(_int right)
     {
-        val = right.val;
-        return (*this);
+        return (val = right.val);
     }
-    _int operator+(int right)
+    template <typename T>
+    _int operator+(T right)
     {
         return (val + right);
     }
@@ -31,7 +31,8 @@ public:
     {
         return (val + right.val);
     }
-    _int operator-(int right)
+    template <typename T>
+    _int operator-(T right)
     {
         return (val - right);
     }
@@ -39,26 +40,60 @@ public:
     {
         return (val - right.val);
     }
-
-    _int operator+=(int right)
+    template <typename T>
+    _int operator*(T right)
     {
-        val += right;
-        return (*this);
+        return (val * right);
+    }
+    _int operator*(_int right)
+    {
+        return (val * right.val);
+    }
+    template <typename T>
+    _int operator/(T right)
+    {
+        return (val / right);
+    }
+    _int operator/(_int right)
+    {
+        return (val / right.val);
+    }
+
+    template <typename T>
+    _int operator+=(T right)
+    {
+        return (val += right);
     }
     _int operator+=(_int right)
     {
-        val += right.val;
-        return (*this);
+        return (val += right.val);
     }
-    _int operator-=(int right)
+    template <typename T>
+    _int operator-=(T right)
     {
-        val -= right;
-        return (*this);
+        return (val -= right);
     }
     _int operator-=(_int right)
     {
-        val -= right.val;
-        return (*this);
+        return (val -= right.val);
+    }
+    template <typename T>
+    _int operator*=(T right)
+    {
+        return (val *= right);
+    }
+    _int operator*=(_int right)
+    {
+        return (val *= right.val);
+    }
+    template <typename T>
+    _int operator/=(T right)
+    {
+        return (val /= right);
+    }
+    _int operator/=(_int right)
+    {
+        return (val /= right.val);
     }
 
     _int operator++(int right)
@@ -78,7 +113,8 @@ public:
         return --val;
     }
 
-    _int operator==(int right)
+    template <typename T>
+    _int operator==(T right)
     {
         return val == right;
     }
@@ -86,7 +122,8 @@ public:
     {
         return val == right.val;
     }
-    _int operator!=(int right)
+    template <typename T>
+    _int operator!=(T right)
     {
         return !(val == right);
     }
@@ -95,7 +132,8 @@ public:
         return !(val == right.val);
     }
 
-    _int operator>(int right)
+    template <typename T>
+    _int operator>(T right)
     {
         return val > right;
     }
@@ -103,7 +141,8 @@ public:
     {
         return val > right.val;
     }
-    _int operator<(int right)
+    template <typename T>
+    _int operator<(T right)
     {
         return val < right;
     }
@@ -112,7 +151,8 @@ public:
         return val < right.val;
     }
 
-    _int operator>=(int right)
+    template <typename T>
+    _int operator>=(T right)
     {
         return val >= right;
     }
@@ -120,7 +160,8 @@ public:
     {
         return val >= right.val;
     }
-    _int operator<=(int right)
+    template <typename T>
+    _int operator<=(T right)
     {
         return val <= right;
     }

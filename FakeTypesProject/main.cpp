@@ -21,18 +21,18 @@ class A registered
 int main()
 {
     int i = 0;
-    cout << __doc__;
+    cout << "1) " << __doc__;
 
     {
         char str = 'A';
         i++;
-        cout << __doc__;
+        cout << "2) " << __doc__;
 
         A aobj;
-        cout << __doc__;
+        cout << "3) " << __doc__;
     }
 
-    cout << __doc__;
+    cout << "4) " << __doc__;
 
     return 0;
 }
