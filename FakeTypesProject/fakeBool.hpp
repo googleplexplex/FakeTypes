@@ -5,13 +5,20 @@ class fakeBool : public registerableClass
 {
 public:
     bool val;
-    fakeBool(int _val)
-        : registerableClass(boolType)
+    fakeBool(bool _val, const char* name, bool codeLine)
+        : registerableClass(boolType, name, codeLine)
+    {
+        val = _val;
+    }
+    fakeBool(const char* name, bool codeLine)
+        : registerableClass(boolType, name, codeLine) {}
+    fakeBool(bool _val)
+        : registerableClass(boolType, "?", -1)
     {
         val = _val;
     }
     fakeBool()
-        : registerableClass(boolType) {}
+        : registerableClass(boolType, "?", -1) {}
 
     template <typename T>
     fakeBool operator=(T right)

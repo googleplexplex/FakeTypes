@@ -11,7 +11,7 @@ using namespace std;
 
 #ifdef REGISTER_ONLY_EXISTS
     #ifdef REGISTER_ALL
-        #define REGISTER_ONLY_EXISTS
+        #undef REGISTER_ALL
     #endif
 #endif
 
@@ -33,6 +33,10 @@ public:
     typesEnum type;
 #ifdef REGISTER_ALL
     bool status;
+#endif
+#ifdef REGISTER_CODE_INFO
+    const char* name;
+    int codeLine;
 #endif
 
     friend ostream& operator<<(ostream& out, const varInfoClass& infoClass);
@@ -81,62 +85,96 @@ ostream& operator<<(ostream& out, const varInfoClass& infoClass)
         out << "Deleted";
 #endif
 
+#ifdef REGISTER_CODE_INFO
+    out << ", ";
+
+    out << "Name: " << infoClass.name;
+
+    out << ", ";
+
+    out << "Line of code: " << infoClass.name;
+#endif
+
     return out;
 }
-vector<varInfoClass> allVaribles;
-#define __doc__ allVaribles
+vector<varInfoClass> allVariables;
+#define __doc__ allVariables
 
+#ifdef REGISTER_CODE_INFO
+void registerVariable(void* ptr, typesEnum varType, const char* name, int codeLine)
+#else
+void registerVariable(void* ptr, typesEnum varType)
+#endif
+{
+    varInfoClass addedInfo;
+    addedInfo.ptr = ptr;
+    addedInfo.type = varType;
+#ifdef REGISTER_ALL
+    addedInfo.status = true;
+#endif
+#ifdef REGISTER_CODE_INFO
+    addedInfo.name = name;
+    addedInfo.codeLine = codeLine;
+#endif
+
+    allVariables.push_back(addedInfo);
+}
+void unRegisterVariable(void* ptr)
+{
+#ifdef REGISTER_ONLY_EXISTS
+    for (int i = 0; i < allVariables.size(); i++)
+    {
+        if (allVariables[i].ptr == this)
+        {
+            allVariables.erase(allVariables.begin() + i);
+            break;
+        }
+    }
+#endif
+#ifdef REGISTER_ALL
+    varInfoClass deletedInfo;
+    deletedInfo.ptr = ptr;
+
+    for (int i = 0; i < allVariables.size(); i++)
+    {
+        if (allVariables[i].ptr == ptr)
+        {
+            allVariables[i].status = false;
+            break;
+        }
+    }
+#endif
+}
 class registerableClass
 {
 public:
+#ifdef REGISTER_CODE_INFO
+    registerableClass(typesEnum varType, const char* name, int codeLine)
+    {
+        registerVariable(this, varType, name, codeLine);
+    }
+#else
     registerableClass(typesEnum varType)
     {
-        varInfoClass addedInfo;
-        addedInfo.ptr = this;
-        addedInfo.type = varType;
-#ifdef REGISTER_ALL
-        addedInfo.status = true;
-#endif
-
-        allVaribles.push_back(addedInfo);
+        registerVariable(this, varType);
     }
+#endif
     ~registerableClass()
     {
-#ifdef REGISTER_ONLY_EXISTS
-        varInfoClass deletedInfo;
-        deletedInfo.ptr = this;
-
-        for (int i = 0; i < allVaribles.size(); i++)
-        {
-            if (allVaribles[i].ptr == this)
-            {
-                allVaribles.erase(allVaribles.begin() + i);
-                break;
-            }
-        }
-#endif
-#ifdef REGISTER_ALL
-        varInfoClass deletedInfo;
-        deletedInfo.ptr = this;
-
-        for (int i = 0; i < allVaribles.size(); i++)
-        {
-            if (allVaribles[i].ptr == this)
-            {
-                allVaribles[i].status = false;
-                break;
-            }
-        }
-#endif
+        unRegisterVariable(this);
     }
 };
 
 class registerableClassParent : registerableClass
 {
 public:
+#ifdef REGISTER_CODE_INFO
+    registerableClassParent(const char* name, int codeLine)
+        : registerableClass(classType, name, codeLine) {}
+#else
     registerableClassParent()
-        : registerableClass(classType)
-    {}
+        : registerableClass(classType) {}
+#endif
 };
 #define registered : registerableClassParent
 

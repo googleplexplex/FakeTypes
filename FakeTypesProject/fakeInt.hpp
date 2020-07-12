@@ -5,13 +5,20 @@ class fakeInt : public registerableClass
 {
 public:
     int val;
+    fakeInt(int _val, const char* name, int codeLine)
+        : registerableClass(intType, name, codeLine)
+    {
+        val = _val;
+    }
+    fakeInt(const char* name, int codeLine)
+        : registerableClass(intType, name, codeLine) {}
     fakeInt(int _val)
-        : registerableClass(intType)
+        : registerableClass(intType, "?", -1)
     {
         val = _val;
     }
     fakeInt()
-        : registerableClass(intType) {}
+        : registerableClass(intType, "?", -1) {}
 
     template <typename T>
     fakeInt operator=(T right)

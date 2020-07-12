@@ -5,13 +5,20 @@ class fakeFloat : public registerableClass
 {
 public:
     float val;
-    fakeFloat(int _val)
-        : registerableClass(floatType)
+    fakeFloat(float _val, const char* name, float codeLine)
+        : registerableClass(floatType, name, codeLine)
+    {
+        val = _val;
+    }
+    fakeFloat(const char* name, float codeLine)
+        : registerableClass(floatType, name, codeLine) {}
+    fakeFloat(float _val)
+        : registerableClass(floatType, "?", -1)
     {
         val = _val;
     }
     fakeFloat()
-        : registerableClass(floatType) {}
+        : registerableClass(floatType, "?", -1) {}
 
     template <typename T>
     fakeFloat operator=(T right)
